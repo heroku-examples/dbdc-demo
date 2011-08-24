@@ -10,7 +10,7 @@ module OmniAuth
       # @option options [Boolean, false] :mobile When true, use the mobile sign-in interface.
       def initialize(app, client_id = nil, client_secret = nil, options = {}, &block)
         client_options = {
-          :site => "https://login.salesforce.com",
+          :site => "https://prerelna1.pre.salesforce.com",
           :authorize_path      => "/services/oauth2/authorize",
           :access_token_path   => "/services/oauth2/token"
         }

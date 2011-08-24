@@ -1,6 +1,11 @@
 DbComDemo::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+ 
+  get 'sessions/index'
+  get 'sessions/create'
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#fail'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
