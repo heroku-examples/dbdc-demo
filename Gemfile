@@ -8,6 +8,9 @@ gem 'haml'
 gem 'databasedotcom'
 gem 'databasedotcom-rails'
 
+gem 'omniauth'
+gem 'multi_json'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
