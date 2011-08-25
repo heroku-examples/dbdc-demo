@@ -1,20 +1,17 @@
-require 'forcedotcom'
-
-# Set the default hostname for omniauth to send callbacks to.
-# seems to be a bug in omniauth that it drops the httpS
-# this still exists in 0.2.0
-#OmniAuth.config.full_host = 'http://localhost:3000/auth/forcedotcom/callback'
-
-module OmniAuth
-  module Strategies
-    #tell omniauth to load our strategy
-    autoload :Forcedotcom, 'lib/forcedotcom'
+class OmniAuth::Strategies::Salesforce 
+  def initialize(app, consumer_key = nil, consumer_secret = nil, options = {}, &block)
+    client_options = { 
+      :site => 'https://' + ENV['DATABASE_COM_URL'].host,
+      :authorize_path => '/services/oauth2/authorize',
+      :access_token_path => '/services/oauth2/token' 
+    }           
+    options.merge!(:response_type => 'code', :grant_type => 'authorization_code')        
+    super(app, :salesforce, consumer_key, consumer_secret, client_options, options, &block)      
   end
-end
-
+end 
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :forcedotcom, 
+  provider :salesforce, 
     '3MVG9lKcPoNINVBIjB.wiPN0cNZc8CjYEv..laOBgpzAGHIzt3H8PQPkhN_bH11.KLN3LlOqBDniNJrd5emRi', 
     '1038986679638308795'
 end
