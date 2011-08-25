@@ -2,20 +2,38 @@
 <html>
 <head>
   <title>DbComDemo</title>
-  <%= stylesheet_link_tag :all %>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.0.min.css">
+  <!--  <link rel="stylesheet/less" type="text/css" href="/stylesheets/bootstrap.less"> -->
   <%= javascript_include_tag :defaults, 'less-1.1.3.min.js' %>
-  <link rel="stylesheet/less" type="text/css" href="/stylesheets/bootstrap.less">
   <%= csrf_meta_tag %>
+  <style type="text/css">
+    div.login_container { margin: 0 auto; width: 500px; }
+    form div.input { margin-top: 5px; margin-bottom: 5px; }
+    div#masthead { margin-top: 40px; }
+    .topbar ul { float: right; }
+  </style>
 </head>
 <body>
-
-<% if logged_in? %>
-  <div id="header">
-    <%= link_to "Log out", :controller => "sessions", :action => "logout" %>
+  <div class="topbar">
+    <div class="fill">
+      <div class="container fixed">
+        <h3><a href="#">Database.com</a></h3>
+          <% if logged_in? %>
+            <ul>
+              <li><%= link_to "Admin", products_path %></li>
+              <li><%= link_to "Log out", :controller => "sessions", :action => "logout" %></li>
+           </ul>
+        <%- end %>
+      </div>
+    </div>
   </div>
-<%- end %>
 
-<%= yield %>
+  <div class="container">
+    <% if logged_in? %>
+      <div id="masthead"></div>
+    <%-end %>
 
+    <%= yield %>
+  </div>
 </body>
 </html>

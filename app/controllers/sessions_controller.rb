@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     else
       session[:auth] = request.env['omniauth.auth']
     end
-    render :text => session[:auth].inspect
+    #render :text => session[:auth].inspect
+    redirect_to '/'
   end
 
   def fail
@@ -15,6 +16,6 @@ class SessionsController < ApplicationController
 
   def logout
     session[:auth] = nil
-    render :text => "Logged out"
+    redirect_to '/'
   end
 end
