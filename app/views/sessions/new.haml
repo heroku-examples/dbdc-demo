@@ -1,0 +1,23 @@
+%div.hero-unit
+  %div.login_container
+
+    %div.container
+      %form{action: '/sessions/create', method: 'POST'}
+        %fieldset
+          %legend Sign in with Database.com credentials
+          = label_tag :username, "Username:"
+          %div.input
+            = text_field_tag :username
+          = label_tag :password, "Password:"
+          %div.input
+            = password_field_tag :password
+          = label_tag :secret, "Secret:"
+          %div.input
+            = password_field_tag :secret
+          = hidden_field_tag :submit, 1
+          %div.input
+            = submit_tag "Submit", :class => "btn primary"
+
+          %div.input
+            = "-or-"
+            %h4= link_to "Sign in with SalesForce.com", "/auth/salesforce"
