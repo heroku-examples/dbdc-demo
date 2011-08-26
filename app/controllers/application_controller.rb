@@ -6,14 +6,17 @@ class ApplicationController < ActionController::Base
   def establish_connection
     return unless session[:auth]
     begin
+      STDOUT.puts "establish connection to database.com"
       @client = Databasedotcom::Client.new
       @client.username = @client.password = nil
       session[:token] = @client.authenticate session[:auth]
       #check connection w. list_sobjects
       @client.list_sobjects
       self.class.dbdc_client = @client 
+      STDOUT.puts "connection established"
     rescue Databasedotcom::SalesForceError => e
       #should retry with refresh_token
+      STDOUT.puts "caught #{e.message} \n\n #{e.backtrace}"
       session[:auth] = false
       redirect_to '/'
     end
