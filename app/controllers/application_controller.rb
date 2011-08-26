@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def protect!
     return if logged_in?
-    redirect_to :controller => "sessions", :action => 'index'
+    redirect_to :controller => "sessions", :action => 'new'
   end
 
   def logged_in?
