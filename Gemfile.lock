@@ -142,7 +142,7 @@ GEM
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     rubyntlm (0.1.1)
-    smart_env (0.0.2)
+    smart_env (0.0.3)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
