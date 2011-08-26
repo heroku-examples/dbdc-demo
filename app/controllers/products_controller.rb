@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_filter :protect!
+
   # GET /products
   # GET /products.xml
   def index
@@ -40,15 +42,16 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
-    @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
-      else
+      begin
+        @product = Product.create(params[:product])
+        format.html { redirect_to(product_path(@product), :notice => 'Product was successfully created.') }
+        format.xml  { render :xml => @product, :status => :created, :location => product_path(@product) }
+      rescue Databasedotcom::SalesForceError => e
+        @errors  = [e.message] 
         format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -59,12 +62,14 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+      begin
+        @product.update_attributes(params[:product])
+        format.html { redirect_to(product_path(@product), :notice => 'Product was successfully updated.') }
         format.xml  { head :ok }
-      else
+      rescue Databasedotcom::SalesForceError => e
+        @errors  = [e.message] 
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -73,7 +78,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1.xml
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
+    @product.delete
 
     respond_to do |format|
       format.html { redirect_to(products_url) }

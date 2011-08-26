@@ -47,6 +47,9 @@ GEM
       rack (< 2, >= 1.1.0)
     haml (3.1.2)
     i18n (0.5.0)
+    jquery-rails (1.0.13)
+      railties (~> 3.0)
+      thor (~> 0.14)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.2.19)
@@ -157,6 +160,7 @@ DEPENDENCIES
   databasedotcom
   databasedotcom-rails
   haml
+  jquery-rails
   multi_json
   omniauth
   rails (= 3.0.10)

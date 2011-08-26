@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def self.const_missing(sym)
     custom_obj = sym.to_s + '__c'
     if sobject_types.include?(custom_obj)
-      obj = dbdc_client.materialize(custom_obj)
+      dbdc_client.materialize(custom_obj)
     else
       super
     end

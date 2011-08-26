@@ -3,11 +3,13 @@ DbComDemo::Application.routes.draw do
   # first created -> highest priority.
  
   match '/sessions', :to => 'sessions#new'
+  match '/sessions/logout', :to => 'sessions#logout'
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#fail'
+  match '/welcome', :to => 'welcome#index' 
+  root :to => "welcome#index"
 
-  resources :products
-  root :to => "products#index"
+  resources :products, :constraints => {:id => /[\w\d]+/}
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -58,5 +60,5 @@ DbComDemo::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+#  match ':controller(/:action(/:id(.:format)))'
 end

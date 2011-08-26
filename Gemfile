@@ -12,6 +12,7 @@ gem 'databasedotcom-rails'
 gem 'omniauth'
 gem 'multi_json'
 gem 'smart_env'
+gem 'jquery-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

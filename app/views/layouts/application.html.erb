@@ -9,7 +9,7 @@
   <style type="text/css">
     div.login_container { margin: 0 auto; width: 500px; }
     form div.input { margin-top: 5px; margin-bottom: 5px; }
-    div#masthead { margin-top: 40px; }
+    div#masthead { margin-top: 50px; }
     .topbar ul { float: right; }
   </style>
 </head>
@@ -17,12 +17,12 @@
   <div class="topbar">
     <div class="fill">
       <div class="container fixed">
-        <h3><a href="#">Database.com</a></h3>
-          <% if logged_in? %>
-            <ul>
-              <li><%= link_to "Admin", products_path %></li>
-              <li><%= link_to "Log out", :controller => "sessions", :action => "logout" %></li>
-           </ul>
+        <h3><a href="/welcome">Database.com</a></h3>
+        <% if logged_in? %>
+          <ul>
+            <li><%= link_to "Admin", products_path(:admin => true) %></li>
+            <li><%= link_to "Log out", :controller => "sessions", :action => "logout" %></li>
+          </ul>
         <%- end %>
       </div>
     </div>
