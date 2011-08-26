@@ -2,6 +2,7 @@ DbComDemo::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
  
+  post  '/sessions/create'
   match '/sessions', :to => 'sessions#new'
   match '/sessions/logout', :to => 'sessions#logout'
   match '/auth/:provider/callback', :to => 'sessions#create'
