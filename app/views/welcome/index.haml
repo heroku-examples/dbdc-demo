@@ -1,7 +1,6 @@
 %h2 All the products!
 
-%ul
-  - @products.each do |product|
-    %li 
-      = product.Name
-      = product.price__c
+- @products.each do |product|
+  %div.product
+    = product.Name
+    = product.price__c

@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       begin
-        @product = Product.create(params[:product])
+        @product = Product.create(Product.coerce_params(params[:product]))
         format.html { redirect_to(product_path(@product), :notice => 'Product was successfully created.') }
         format.xml  { render :xml => @product, :status => :created, :location => product_path(@product) }
       rescue Databasedotcom::SalesForceError => e
@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       begin
-        @product.update_attributes(params[:product])
+        @product.update_attributes(Product.coerce_params(params[:product]))
         format.html { redirect_to(product_path(@product), :notice => 'Product was successfully updated.') }
         format.xml  { head :ok }
       rescue Databasedotcom::SalesForceError => e

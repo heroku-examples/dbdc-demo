@@ -1,0 +1,18 @@
+%p#notice.alert_message.info= notice
+
+%div.container
+  %div.hero-unit
+    %div.row
+      - if url = @product.image_url__c
+        %div.span5.columns
+          = image_tag url, :class => 'span5'
+      %div.span8.columns
+        %h3= @product.Name
+        %p 
+          Price: 
+          = @product.price__c
+
+%p
+  = link_to 'Edit', edit_product_path(@product) 
+  |
+  = link_to 'Back', products_path

@@ -12,7 +12,25 @@
   <% end %>
 
   <%= f.label :Name, "Name:" %>
+  <div class="input">
   <%= f.text_field :Name %>
+  </div>
+
+  <%= f.label :price__c, "Price:" %>
+  <div class="input">
+  <%= f.text_field :price__c %>
+  </div>
+
+  <%= f.label :description__c, "Description:" %>
+  <div class="input">
+    <%= f.text_area :description__c, :class => "xxlarge", :rows => '4' %>
+  </div>
+
+  <%= f.label :image_url__c, "Image:" %>
+  <div class="input">
+  <%= f.text_field :image_url__c %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>
