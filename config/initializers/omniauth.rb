@@ -16,5 +16,5 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   url = ENV['DATABASE_COM_URL']
-  provider :salesforce, url.params['oauth_secret'], url.params['oauth_secret']
+  provider :salesforce, url.params['oauth_key'], url.params['oauth_secret']
 end
