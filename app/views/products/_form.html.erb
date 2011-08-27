@@ -28,7 +28,10 @@
 
   <%= f.label :image_url__c, "Image:" %>
   <div class="input">
-  <%= f.text_field :image_url__c %>
+    <%- if url = @product.image_url__c %>
+      <%= image_tag url %>
+    <% end %>
+  <%= f.file_field :image_url__c %>
   </div>
 
 

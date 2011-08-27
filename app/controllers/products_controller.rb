@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to(product_path(@product), :notice => 'Product was successfully created.') }
         format.xml  { render :xml => @product, :status => :created, :location => product_path(@product) }
       rescue Databasedotcom::SalesForceError => e
-        @errors  = [e.message] 
+        @errors  = [e.message]
         format.html { render :action => "new" }
         format.xml  { render :xml => @errors, :status => :unprocessable_entity }
       end
@@ -59,6 +59,12 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
+    require 'ruby-debug'; debugger
+    if upload = params["product"].delete("image_url__c")
+      filename = upload.original_filename
+      data = upload.tempfile.read
+      params["product"]["image_url__c"] = S3Uploader.upload(filename, data)
+    end
     @product = Product.find(params[:id])
 
     respond_to do |format|
@@ -67,7 +73,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to(product_path(@product), :notice => 'Product was successfully updated.') }
         format.xml  { head :ok }
       rescue Databasedotcom::SalesForceError => e
-        @errors  = [e.message] 
+        @errors  = [e.message]
         format.html { render :action => "edit" }
         format.xml  { render :xml => @errors, :status => :unprocessable_entity }
       end

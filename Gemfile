@@ -13,7 +13,7 @@ gem 'omniauth'
 gem 'multi_json'
 gem 'smart_env'
 gem 'jquery-rails'
-gem 'aws-s3'
+gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -35,5 +35,3 @@ end
 # gem 'bj'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
