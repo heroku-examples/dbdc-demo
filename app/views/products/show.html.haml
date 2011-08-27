@@ -11,6 +11,7 @@
         %p 
           Price: 
           = @product.price__c
+        %p= @product.description__c
 
 %p
   = link_to 'Edit', edit_product_path(@product) 
