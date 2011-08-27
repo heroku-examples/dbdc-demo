@@ -1,6 +1,12 @@
 %h2 All the products!
 
 - @products.each do |product|
-  %div.product
-    = product.Name
-    = product.price__c
+  %div.row.well
+    - if url = product.image_url__c
+      %div.span3.columns
+        = image_tag url, :class => 'span3'
+    %div.span8.columns
+      %h3
+        = product.Name + " - " 
+        = number_to_currency(product.price__c)
+      %p= product.description__c
