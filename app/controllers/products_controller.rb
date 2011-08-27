@@ -42,7 +42,11 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
-
+    if upload = params["product"].delete("image_url__c")
+      filename = upload.original_filename
+      data = upload.tempfile.read
+      params["product"]["image_url__c"] = S3Uploader.upload(filename, data)
+    end
     respond_to do |format|
       begin
         @product = Product.create(Product.coerce_params(params[:product]))
@@ -59,7 +63,6 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
-    require 'ruby-debug'; debugger
     if upload = params["product"].delete("image_url__c")
       filename = upload.original_filename
       data = upload.tempfile.read
