@@ -1,22 +1,4 @@
 %h2 All the products!
 
-- if @error || @products.empty? && action_name == 'search' 
-  %div.alert-message.block-message.error
-    %p 
-      - if @error
-        = @error
-      - else
-        Sorry, but we could not find anything for:
-        %b= params[:q]
-
-
 - @products.to_a.each do |product|
-  %div.row.well
-    - if url = product.image_url__c
-      %div.span3.columns
-        = image_tag url, :class => 'span3'
-    %div.span8.columns
-      %h3
-        = product.Name + " - " 
-        = number_to_currency(product.price__c)
-      %p= product.description__c
+  = render :partial => 'product', :locals => {:product => product}

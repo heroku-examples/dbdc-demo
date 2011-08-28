@@ -11,6 +11,5 @@ class WelcomeController < ApplicationController
     rescue Databasedotcom::SalesForceError => boom
       @error = boom.message
     end
-    render 'index'
   end
 end

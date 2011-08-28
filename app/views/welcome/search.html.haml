@@ -1,0 +1,13 @@
+%h2 Search Results
+
+- if @error || @products.empty? 
+  %div.alert-message.block-message.error
+    %p 
+      - if @error
+        = @error
+      - else
+        Sorry, but we could not find anything for:
+        %b= params[:q]
+
+- @products.to_a.each do |product|
+  = render :partial => 'product', :locals => {:product => product}
