@@ -27,12 +27,12 @@ class ApplicationController < ActionController::Base
     redirect_to :controller => "sessions", :action => 'new'
   end
 
-  def client
-    self.class.client
-  end
-
   def logged_in?
     session[:auth]
+  end
+
+  def client
+    self.class.client
   end
 
   def self.sobjects
