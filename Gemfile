@@ -6,8 +6,6 @@ gem 'thin'
 gem 'haml'
 
 gem 'databasedotcom'
-gem 'databasedotcom-rails'
-#gem 'forcedotcom'
 
 gem 'omniauth'
 gem 'multi_json'

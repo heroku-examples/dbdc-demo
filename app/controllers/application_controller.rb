@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  include Databasedotcom::Rails::Controller
   protect_from_forgery
   before_filter :establish_connection
+  cattr_accessor :client
 
   def establish_connection
     return unless session[:auth]
@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
       @client = Databasedotcom::Client.new
       @client.username = @client.password = nil
       session[:token] = @client.authenticate session[:auth]
-      #check connection w. list_sobjects
-      @client.list_sobjects
-      self.class.dbdc_client = @client 
+      #check connection w. list_sobjects and cache result
+      self.class.client = @client
+      sobjects
       STDOUT.puts "connection established"
     rescue Databasedotcom::SalesForceError => e
       #should retry with refresh_token
@@ -27,14 +27,28 @@ class ApplicationController < ActionController::Base
     redirect_to :controller => "sessions", :action => 'new'
   end
 
+  def client
+    self.class.client
+  end
+
   def logged_in?
     session[:auth]
   end
 
+  def self.sobjects
+    @sobjects ||= self.client.list_sobjects 
+  end
+
+  def sobjects
+    self.class.sobjects
+  end
+
   def self.const_missing(sym)
     custom_obj = sym.to_s + '__c'
-    if sobject_types.include?(custom_obj)
-      dbdc_client.materialize(custom_obj)
+    if sobjects.include?(custom_obj)
+      client.materialize(custom_obj)
+    elsif sobjects.include? sym.to_s
+      client.materialize(sym.to_s)
     else
       super
     end
