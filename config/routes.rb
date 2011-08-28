@@ -8,6 +8,7 @@ DbComDemo::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#fail'
   match '/welcome', :to => 'welcome#index' 
+  match '/search', :to => 'welcome#search'
   root :to => "welcome#index"
 
   resources :products, :constraints => {:id => /[\w\d]+/}

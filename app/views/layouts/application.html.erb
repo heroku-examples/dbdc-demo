@@ -12,6 +12,7 @@
     div#masthead { margin-top: 50px; }
     .topbar ul { float: right; }
     th.action, td.action { width: 8% }
+    .topbar form { float: right };
   </style>
 </head>
 <body>
@@ -24,6 +25,10 @@
             <li><%= link_to "Admin", products_path %></li>
             <li><%= link_to "Log out", :controller => "sessions", :action => "logout" %></li>
           </ul>
+        <%- end %>
+        <% form_tag(search_path, :method => 'get') do %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag("Search", :style => "width: 60px") %>
         <%- end %>
       </div>
     </div>
