@@ -7,7 +7,8 @@ class WelcomeController < ApplicationController
 
   def search
     begin
-      @products = dbdc_client.search('FIND {' + params[:q].to_s + '}')
+      query = params[:q].split.map{ |x| "*#{x}*"}.join(' AND ')
+      @products = dbdc_client.search('FIND {' + query + '}')
     rescue Databasedotcom::SalesForceError => boom
       @error = boom.message
     end
