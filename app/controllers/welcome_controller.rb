@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  #before_filter :protect!
+  before_filter :protect!
 
   def index
     @products = Product.all
