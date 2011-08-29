@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
     else
       session[:auth] = request.env['omniauth.auth']
     end
-    #render :text => session[:auth].inspect
     redirect_to '/'
   end
 

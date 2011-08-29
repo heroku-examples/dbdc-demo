@@ -4,7 +4,7 @@ This app shows how to use the databasedotcom and omniauth gems to interact with 
 
 ## Install
 
-    #from your app dire
+    #from your app dir
     heroku addons:add database-com
     heroku config | grep DATABASE_COM_URL 
     cp keys.rv keys.rb.sample
@@ -25,7 +25,7 @@ To create models, login through the Database.com addon page from your heroku acc
 - give it a description field
 - give it an image\_url field
 
-Or just delete the PrdouctController and use your own models!
+Or just delete the ProductController and use your own models!
 
 ### Special features
 
