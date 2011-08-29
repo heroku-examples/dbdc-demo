@@ -1,9 +1,10 @@
 # Database.com Demo App
 
-This app shows how to use the databasedotcom gem with omniauth to interact with data stored on Database.com as a heroku app with the Database.com instance provisioned as a heroku add-on.
+This app shows how to use the databasedotcom and omniauth gems to interact with data stored on Database.com from a heroku app using the Database.com addon.
 
 ## Install
 
+    #from your app dire
     heroku addons:add database-com
     heroku config | grep DATABASE_COM_URL 
     cp keys.rv keys.rb.sample
