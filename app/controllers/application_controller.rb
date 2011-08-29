@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   def setup_omniauth
     #this could be hardcoded with the app domain in config/initializers/omniauth.rb
     if Rails.env.production? 
-      OmniAuth.config.full_host = "https://#{params.env['SERVER_NAME']}"
+      OmniAuth.config.full_host = "https://#{request.env['SERVER_NAME']}"
     end
   end
 
