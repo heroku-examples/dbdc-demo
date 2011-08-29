@@ -34,3 +34,9 @@ We're using ::const\_missing to allow us to dynamically materialize the Database
 
 OmniAuth is handling the login.
 Credentials are stored in the session and a connection is established with Database.com each request.
+
+OmniAuth has a bug that causes it to drop the "s" part of https, so we have to override it in ApplicationController when we're in the production env.  That can also be hardcoded to the app's domain in an initializer.
+
+    if Rails.env.production? 
+      OmniAuth.config.full_host = "https://www.example.com"
+    end
