@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :setup_omniauth
   before_filter :establish_connection
   cattr_accessor :client
 
@@ -19,6 +20,13 @@ class ApplicationController < ActionController::Base
       STDOUT.puts "caught #{e.message} \n\n #{e.backtrace}"
       session[:auth] = false
       redirect_to '/'
+    end
+  end
+
+  def setup_omniauth
+    #this could be hardcoded with the app domain in config/initializers/omniauth.rb
+    if Rails.env.production? 
+      OmniAuth.config.full_host = "https://#{params.env['SERVER_NAME']}"
     end
   end
 

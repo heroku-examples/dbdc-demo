@@ -10,10 +10,6 @@ class OmniAuth::Strategies::Salesforce
   end
 end 
 
-if Rails.env.production? 
-  OmniAuth.config.full_host = 'https://dbdotcom-demo--c.herokuapp.com'
-end
-
 Rails.application.config.middleware.use OmniAuth::Builder do
   url = ENV['DATABASE_COM_URL']
   provider :salesforce, url.params['oauth_key'], url.params['oauth_secret']
