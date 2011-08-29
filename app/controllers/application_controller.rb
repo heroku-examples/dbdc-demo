@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       STDOUT.puts "establish connection to database.com"
       @client = Databasedotcom::Client.new
       @client.username = @client.password = nil
-      session[:token] = @client.authenticate session[:auth]
+      @client.authenticate session[:auth]
       #check connection w. list_sobjects and cache result
       self.class.client = @client
       sobjects
