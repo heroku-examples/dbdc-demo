@@ -11,7 +11,7 @@ class OmniAuth::Strategies::Salesforce
 end 
 
 if Rails.env.production? 
-  OmniAuth.config.full_host = 'https://dbdotcom-demo--c.herokuapp.com'
+  OmniAuth.config.full_host = 'https://dbdc-demo.herokuapp.com'
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
