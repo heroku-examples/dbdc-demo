@@ -7,7 +7,7 @@ This app shows how to use the databasedotcom and omniauth gems to interact with 
     #from your app dir
     heroku addons:add database-com
     heroku config | grep DATABASE_COM_URL 
-    cp keys.rv keys.rb.sample
+    cp keys.rb.sample  keys.rb
 
   *use value from heroku as your ENV var*
 
